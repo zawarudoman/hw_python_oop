@@ -105,8 +105,8 @@ class SportsWalking(Training):
         """Получить расход калорий при ходьбе.
 
         Notes:
-            ((0.035 * вес + (средняя_скорость_в_метрах_в_секунду**2 / рост_в_метрах)
-            * 0.029 * вес) * время_тренировки_в_минутах)
+            ((0.035 * вес + (средняя_скорость_в_метрах_в_секунду**2
+            / рост_в_метрах)* 0.029 * вес) * время_тренировки_в_минутах)
         """
 
         calories = (
@@ -140,7 +140,10 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        speed = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        speed = (
+            self.length_pool * self.count_pool
+            / self.M_IN_KM / self.duration
+        )
         return speed
 
     def get_spent_calories(self) -> float:
@@ -151,7 +154,8 @@ class Swimming(Training):
         """
         calories = (
             (
-                (self.length_pool * self.count_pool / self.M_IN_KM / self.duration)
+                (self.length_pool * self.count_pool
+                 / self.M_IN_KM / self.duration)
                 + self.CALORIES_MEAN_SPEED_SHIFT
             )
             * self.CALORIES_WEIGHT_MULTIPLIER
