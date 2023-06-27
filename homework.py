@@ -77,13 +77,9 @@ class Running(Training):
             (18 * средняя_скорость + 1.79) * вес_спортсмена /
             M_IN_KM * время_тренировки_в_минутах"""
         return (
-                (
-                        self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed()
-                        + self.CALORIES_MEAN_SPEED_SHIFT
-                )
-                * self.weight
-                / self.M_IN_KM
-                * (self.duration * self.MIN_IN_H)
+               (self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed()
+                + self.CALORIES_MEAN_SPEED_SHIFT) * self.weight / self.M_IN_KM
+            * (self.duration * self.MIN_IN_H)
         )
 
 
@@ -108,14 +104,11 @@ class SportsWalking(Training):
         """
 
         return (
-                       self.CALORIES_WEIGHT_MULTIPLIER * self.weight
-                       + (
-                               (self.get_mean_speed() * self.KMH_IN_MSEC) ** 2
-                               / (self.height / self.CM_IN_M)
-                       )
-                       * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
-                       * self.weight
-               ) * (self.duration * self.MIN_IN_H)
+            self.CALORIES_WEIGHT_MULTIPLIER * self.weight
+            + ((self.get_mean_speed() * self.KMH_IN_MSEC) ** 2
+               / (self.height / self.CM_IN_M))
+            * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
+            * self.weight) * (self.duration * self.MIN_IN_H)
 
 
 class Swimming(Training):
@@ -137,8 +130,8 @@ class Swimming(Training):
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         return (
-                self.length_pool * self.count_pool
-                / self.M_IN_KM / self.duration
+            self.length_pool * self.count_pool
+            / self.M_IN_KM / self.duration
         )
 
     def get_spent_calories(self) -> float:
@@ -148,14 +141,12 @@ class Swimming(Training):
             (средняя_скорость + 1.1) * 2 * вес * время_тренировки
         """
         return (
-                (
-                        (self.length_pool * self.count_pool
-                         / self.M_IN_KM / self.duration)
-                        + self.CALORIES_MEAN_SPEED_SHIFT
-                )
-                * self.CALORIES_WEIGHT_MULTIPLIER
-                * self.weight
-                * self.duration
+               ((self.length_pool * self.count_pool
+                / self.M_IN_KM / self.duration)
+                + self.CALORIES_MEAN_SPEED_SHIFT)
+            * self.CALORIES_WEIGHT_MULTIPLIER
+            * self.weight
+            * self.duration
         )
 
 
