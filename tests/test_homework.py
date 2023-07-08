@@ -106,7 +106,8 @@ def test_InfoMessage_get_message(input_data, expected):
     )
 
 
-def test_Training():    assert inspect.isclass(homework.Training), (
+def test_Training():
+    assert inspect.isclass(homework.Training), (
         '`Training` должен быть классом.'
     )
     for name, value in {
